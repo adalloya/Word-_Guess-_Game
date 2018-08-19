@@ -32,6 +32,14 @@ font-size: 20px;
     margin-left: auto;
     margin-right: auto;
 }
+.logoWin{
+
+width: 350px;
+height: 150px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
 
 p{
     color: white;
@@ -40,6 +48,15 @@ p{
 
 .gameover{
     color: red;
+    font-size:40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30%;
+}
+
+.win{
+    color:yellow;
     font-size:40px;
     display: block;
     margin-left: auto;
@@ -101,6 +118,7 @@ width: 100%
 </head>
 
 <body>
+
 <div class="container">
 
     <div class="row">
@@ -139,7 +157,7 @@ width: 100%
     <h1>Remaining attempts</h1> 
     </div>
     <div class="row">
-    <p id="counter">3</p>
+    <p id="counter">15</p>
     </div>
 <hr>
 <div class="row">
@@ -154,8 +172,14 @@ width: 100%
 // Words to be guess
 var firstWord = ["z", "e", "l", "d", "a"];
 
+// Numbers of letter to win
+var letterToComplete= firstWord.length;
+
+// Numbers of letter right
+correctLetters = 0
+
 // Number of attemps
-var counter= 3; 
+var counter= 15; 
 
 
 // Number of attemps
@@ -164,6 +188,11 @@ var score=0;
 // Reload game
 function myFunction() {
     location.reload();
+}
+
+// Reload game
+function myFunction2() {
+    window.location.href = "level2.html";
 }
 
 // MAIN PROCESS
@@ -184,18 +213,23 @@ if (firstWord.indexOf(userGuess)===-1) {
 
 else if (userGuess=== "z" ){
 document.querySelector("#z").innerHTML = "Z";
+correctLetters++
       }
 else if (userGuess=== "e" ){
 document.querySelector("#e").innerHTML = "E";
+correctLetters++
       }
 else if (userGuess=== "l" ){
 document.querySelector("#l").innerHTML = "L";
+correctLetters++
       }
 else if (userGuess=== "d" ){
 document.querySelector("#d").innerHTML = "D";
+correctLetters++
       }
 else if (userGuess=== "a" ){
 document.querySelector("#a").innerHTML = "A";
+correctLetters++
       }
 // letters typed log
 var letters = userGuess + "-";
@@ -209,6 +243,12 @@ document.querySelector("#counter").innerHTML= counter;
 // // Game over screen
 if ( counter ===0){
 document.querySelector(".container").innerHTML = "<div class=row id=textalign> <h1 class=gameover> GAME OVER </h1> </div> <div class=row id=textalign> <button class=button onclick=myFunction()><span>Play Again</span></button></div> </div>";
+}
+
+if (correctLetters === letterToComplete){
+    document.querySelector(".container").innerHTML = "<div class=row id=textalign> <h1 class=win> THE LEGEND OF ZELDA </h1> </div> <br> <div class=row id=textalign> <img class=logoWin src=assets/images/link.gif> </div> <br> <div class=row id=textalign> <button class=button onclick=myFunction2()><span>Next Word</span></button></div> </div>";
+    score++;
+    document.querySelector("#wins").innerHTML= score;
 }
 };
 
