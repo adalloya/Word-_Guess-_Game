@@ -9,112 +9,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-<style>
-body{
+<link rel="stylesheet" href="assets/css/style.css">
 
-background: black;
-color: green;
-font-family: 'Press Start 2P', cursive;
-}
-hr{
 
-background-color: red; height: 1px; border: 0; 
-}
-
-h1{
-font-size: 20px;
-}
-.logo{
-
-    width: 360px;
-    height: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.logoWin{
-
-width: 350px;
-height: 150px;
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
-
-p{
-    color: white;
-    text-align:center;
-}
-
-.gameover{
-    color: red;
-    font-size:40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30%;
-}
-
-.win{
-    color:yellow;
-    font-size:40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30%;
-}
-
-.button {
-  border-radius: 4px;
-  background-color: green;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 10px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3%;
-  display: block;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-#textalign{
-text-align: center;
-vertical-align: middle;
-line-height: 100%;
-height: 100%;
-width: 100%
-}
-</style>
 </head>
 
 <body>
@@ -126,7 +23,7 @@ width: 100%
     </div>
     <div class="row">
             <div class="col 12 text-center">
-            <h1 id= "instructions"> Press any letter key to get started</h1>
+            <h1 id= "instructions"> Guess the name of the videogame. Press any letter key to get started</h1>
             </div>  
     </div>
 <hr>
@@ -167,95 +64,8 @@ width: 100%
         <p id="guess"></p>
         </div>
 </div>
-<script>
 
-// Words to be guess
-var firstWord = ["z", "e", "l", "d", "a"];
-
-// Numbers of letter to win
-var letterToComplete= firstWord.length;
-
-// Numbers of letter right
-correctLetters = 0
-
-// Number of attemps
-var counter= 15; 
-
-
-// Number of attemps
-var score=0;
-
-// Reload game
-function myFunction() {
-    location.reload();
-}
-
-// Reload game
-function myFunction2() {
-    window.location.href = "level2.html";
-}
-
-// MAIN PROCESS
-    // ==============================================================================
-
-// When the user presses a key, it will run the following function...
-document.onkeyup = function(event) {
-
-// Determine which key was pressed, make it lowercase, and set it to the userInput variable.
-var userGuess = event.key.toLowerCase();
-
-
-// Compare user with array if not right
-if (firstWord.indexOf(userGuess)===-1) {
-    counter--
-        ;}
-    
-// Compare user with array if is right  
-
-else if (userGuess=== "z" ){
-document.querySelector("#z").innerHTML = "Z<audio autoplay><source src=assets/sounds/type.m4a type=audio/mpeg></audio>";
-correctLetters++
-      }
-else if (userGuess=== "e" ){
-document.querySelector("#e").innerHTML = "E<audio autoplay><source src=assets/sounds/type.m4a type=audio/mpeg></audio>";
-correctLetters++
-      }
-else if (userGuess=== "l" ){
-document.querySelector("#l").innerHTML = "L<audio autoplay><source src=assets/sounds/type.m4a type=audio/mpeg></audio>";
-correctLetters++
-      }
-else if (userGuess=== "d" ){
-document.querySelector("#d").innerHTML = "D<audio autoplay><source src=assets/sounds/type.m4a type=audio/mpeg></audio>";
-correctLetters++
-      }
-else if (userGuess=== "a" ){
-document.querySelector("#a").innerHTML = "A<audio autoplay><source src=assets/sounds/type.m4a type=audio/mpeg></audio>";
-correctLetters++
-      }
-// letters typed log
-var letters = userGuess + "-";
-
-// Screen print the letters typed
-document.querySelector("#guess").innerHTML+= letters;
-
-// Update print score
-document.querySelector("#counter").innerHTML= counter;
-
-// // Game over screen
-if ( counter ===0){
-document.querySelector(".container").innerHTML = "<div class=row id=textalign> <h1 class=gameover> GAME OVER </h1> </div> <div class=row id=textalign> <button class=button onclick=myFunction()><span>Play Again</span></button></div><audio autoplay><source src=assets/sounds/end.mp3 type=audio/mpeg></audio> </div>";
-}
-
-if (correctLetters === letterToComplete){
-    document.querySelector(".container").innerHTML = "<div class=row id=textalign> <h1 class=win> Its dangerous to go alone! The game is ZELDA </h1> </div> <br> <div class=row id=textalign> <img class=logoWin src=assets/images/link.gif> </div> <br> <div class=row id=textalign> <button class=button onclick=myFunction2()><span>Next Word</span></button></div><audio autoplay><source src=assets/sounds/winzelda.mp3 type=audio/mpeg></audio></div>";
-    score++;
-    document.querySelector("#wins").innerHTML= score;
-    audio1.autoplay();
-}
-};
-
-
-</script>
+<script src="assets/javascript/game.js"></script>
 
 </body>
 
